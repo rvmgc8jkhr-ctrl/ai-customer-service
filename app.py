@@ -220,23 +220,24 @@ if page == "老闆頁面":
         dashboard_df = pd.DataFrame(columns=[
             "時間", "行業", "客戶等級", "姓名", "電話",
             "預約日期", "預約時間", "問題", "AI回答"
-        ])
-        today_count = len(dashboard_df)
-        high_count = len(
-        dashboard_df[
-            dashboard_df["客戶等級"].astype(str).str.contains("高意願", na=False)
-        ]
-    )
-
-    price_count = len(
+            ])
+    today_count = len(dashboard_df)
+    high_count = len(
     dashboard_df[
-    dashboard_df["客戶等級"].astype(str).str.contains("價格", na=False)
-        ]
-    )
-    st.metric("今日客戶", today_count)
-    st.metric("高意願客戶", high_count)
-    st.metric("價格詢問", price_count)
+                dashboard_df["客戶等級"].astype(str).str.contains("高意願", na=False)
+            ]
+        )
 
-    st.subheader("預約名單")
+            price_count = len(
+            dashboard_df[
+            dashboard_df["客戶等級"].astype(str).str.contains("價格", na=False)
+            ]
+            )
 
-    st.dataframe(dashboard_df)
+            st.metric("今日客戶", today_count)
+            st.metric("高意願客戶", high_count)
+            st.metric("價格詢問", price_count)
+
+            st.subheader("預約名單")
+
+            st.dataframe(dashboard_df)
