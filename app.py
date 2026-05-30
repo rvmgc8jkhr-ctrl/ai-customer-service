@@ -48,7 +48,7 @@ if page == "客人頁面":
 
     question = st.text_input("請輸入客人的問題")
     answer = ""
-     if os.path.exists(file_name):
+    if os.path.exists(file_name):
         old_df = pd.read_excel(file_name)
     else:
         old_df = pd.DataFrame()
