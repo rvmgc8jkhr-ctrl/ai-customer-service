@@ -180,7 +180,15 @@ if page == "客人頁面":
         st.write("AI回答 : ")
         st.write(answer)
 
-    dashboard_df = pd.read_excel("客戶資料.xlsx")
+    file_name = "客戶資料.xlsx"
+
+if os.path.exists(file_name):
+    dashboard_df = pd.read_excel(file_name)
+else:
+    dashboard_df = pd.DataFrame(columns=[
+        "時間", "行業", "客戶等級", "姓名", "電話",
+        "預約日期", "預約時間", "問題", "AI回答"
+    ])
     dashboard_df = dashboard_df.sort_values("時間", ascending=False)
     today_count = len(dashboard_df)
 
@@ -203,7 +211,15 @@ if page == "老闆頁面":
         st.stop()
     st.title("📊 老闆管理系統")
 
-    dashboard_df = pd.read_excel("客戶資料.xlsx")
+    file_name = "客戶資料.xlsx"
+
+if os.path.exists(file_name):
+    dashboard_df = pd.read_excel(file_name)
+else:
+    dashboard_df = pd.DataFrame(columns=[
+        "時間", "行業", "客戶等級", "姓名", "電話",
+        "預約日期", "預約時間", "問題", "AI回答"
+    ])
     today_count = len(dashboard_df)
     high_count = len(
     dashboard_df[
