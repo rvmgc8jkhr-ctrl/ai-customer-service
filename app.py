@@ -223,21 +223,21 @@ if page == "老闆頁面":
             ])
     today_count = len(dashboard_df)
     high_count = len(
-    dashboard_df[
-                dashboard_df["客戶等級"].astype(str).str.contains("高意願", na=False)
-            ]
-        )
+        dashboard_df[
+            dashboard_df["客戶等級"].astype(str).str.contains("高意願", na=False)
+        ]
+    )
 
-            price_count = len(
-            dashboard_df[
+    price_count = len(
+        dashboard_df[
             dashboard_df["客戶等級"].astype(str).str.contains("價格", na=False)
-            ]
-            )
+        ]
+     )
 
-            st.metric("今日客戶", today_count)
-            st.metric("高意願客戶", high_count)
-            st.metric("價格詢問", price_count)
+    st.metric("今日客戶", today_count)
+    st.metric("高意願客戶", high_count)
+    st.metric("價格詢問", price_count)
 
-            st.subheader("預約名單")
+    st.subheader("預約名單")
 
-            st.dataframe(dashboard_df)
+    st.dataframe(dashboard_df)
