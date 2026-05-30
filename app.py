@@ -52,31 +52,31 @@ if page == "客人頁面":
         old_df = pd.read_excel(file_name)
     else:
         old_df = pd.DataFrame()
-
+        
     if st.button("送出"):
+    if name == "":
+        st.error("請輸入客戶姓名")
+        st.stop()
 
-        if not old_df.empty:
-            same_time = old_df[
-                (old_df["預約日期"].astype(str) == str(booking_date))
-                &
-                (old_df["預約時間"].astype(str) == str(booking_time))
-            ]
+    if phone == "":
+        st.error("請輸入客戶電話")
+        st.stop()
 
-            if len(same_time) > 0:
-                st.error("這個時間已經有人預約")
-                st.stop()
+    if question == "":
+        st.error("請輸入客人的問題")
+        st.stop()
 
-        if name == "":
-            st.error("請輸入客戶姓名")
+    if not old_df.empty:
+        same_time = old_df[
+            (old_df["預約日期"].astype(str) == str(booking_date))
+            &
+            (old_df["預約時間"].astype(str) == str(booking_time))
+        ]
+
+        if len(same_time) > 0:
+            st.error("這個時間已經有人預約")
             st.stop()
-
-        if phone == "":
-            st.error("請輸入客戶電話")
-            st.stop()
-
-        if question == "":
-            st.error("請輸入客人的問題")
-            st.stop()
+    
 
         customer_level = "⭐ 普通客戶"
         deal_rate = "30%"
