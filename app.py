@@ -48,7 +48,23 @@ if page == "客人頁面":
 
     question = st.text_input("請輸入客人的問題")
     answer = ""
+     if os.path.exists(file_name):
+        old_df = pd.read_excel(file_name)
+    else:
+        old_df = pd.DataFrame()
+
     if st.button("送出"):
+
+        if not old_df.empty:
+        same_time = old_df[
+            (old_df["預約日期"].astype(str) == str(booking_date))
+            &
+            (old_df["預約時間"].astype(str) == str(booking_time))
+        ]
+
+            if len(same_time) > 0:
+            st.error("這個時間已經有人預約")
+            st.stop()
 
         if name == "":
             st.error("請輸入客戶姓名")
@@ -237,6 +253,17 @@ if page == "老闆頁面":
     st.metric("今日客戶", today_count)
     st.metric("高意願客戶", high_count)
     st.metric("價格詢問", price_count)
+    
+    dashboard_df["排序時間"] = pd.to_datetime(
+        dashboard_df["預約日期"].astype(str) + " " + dashboard_df["預約時間"].astype(str),
+        errors="coerce"
+    )
+
+    dashboard_df = dashboard_df.sort_values("排序時間", ascending=True)
+
+    dashboard_df = dashboard_df.drop(columns=["排序時間"])
+
+    dashboard_df["電話"] = dashboard_df["電話"].astype(str)
 
     st.subheader("預約名單")
 
