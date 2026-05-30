@@ -213,7 +213,7 @@ if page == "老闆頁面":
         st.stop()
     st.title("📊 老闆管理系統")
 
-
+    file_name = "客戶資料.xlsx"
 if os.path.exists(file_name):
     dashboard_df = pd.read_excel(file_name)
 else:
