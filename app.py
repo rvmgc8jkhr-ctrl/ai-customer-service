@@ -3,6 +3,8 @@ import pandas as pd
 from datetime import datetime
 import os
 import requests
+
+file_name = "客戶資料.xlsx"
 CHANNEL_ACCESS_TOKEN = "PPyeoC/nW8ClZRBUsSbbVyAiXlFvBRp8McEYp3NxLpoG9MrONrYOr7m3d74koKYUoGdz7okw50mQL9BCNQ3Ngu3iyJq2sKbHynG89uQ/PbWm3M4Qn5jSLIuUvtOdm2ZJIc3MgC6vaXNd6EbidAbbiwdB04t89/1O/w1cDnyilFU="
 USER_ID = "U05b51b528fc8e762de5537a63ac92aaf"
 
@@ -211,7 +213,6 @@ if page == "老闆頁面":
         st.stop()
     st.title("📊 老闆管理系統")
 
-    file_name = "客戶資料.xlsx"
 
 if os.path.exists(file_name):
     dashboard_df = pd.read_excel(file_name)
